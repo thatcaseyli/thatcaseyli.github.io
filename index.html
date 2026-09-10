@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Original piano and orchestral works by That Casey Li, collected from Douyin.">
+  <meta name="theme-color" content="#f5f5f7">
+  <title>That Casey Li | Original Music</title>
+  <style>
+    :root{color-scheme:light;--bg:#f5f5f7;--paper:#fff;--ink:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;--blue:#06c;--page:min(1180px,calc(100% - 48px));--card-width:clamp(280px,calc((100vw - 96px)/3),377.333px);--nav-height:56px;--hero-y:0px;--hero-scale:1;--copy-y:0px;--copy-opacity:1;--title-x:0px;--title-y:0px;--title-scale:1}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;overflow-x:hidden;background:var(--bg)}
+    body{margin:0;color:var(--ink);background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.5;letter-spacing:0;-webkit-font-smoothing:antialiased}
+    button,a{font:inherit}a{color:inherit}:focus-visible{outline:3px solid rgb(0 102 204 / 35%);outline-offset:3px}
+    .nav{position:fixed;z-index:30;top:0;left:0;width:100%;height:var(--nav-height);color:#fff;border-bottom:1px solid transparent;transition:background 650ms ease,color 650ms ease,border-color 650ms ease;cursor:pointer}
+    .nav.floating{position:fixed;color:var(--ink);border-color:rgb(0 0 0 / 8%);background:rgb(250 250 252 / 88%);backdrop-filter:saturate(180%) blur(20px)}
+    .nav-inner,.hero-inner,.section-inner,.footer-inner{width:var(--page);margin:0 auto}
+    .nav-inner{height:100%;display:flex;align-items:center;justify-content:flex-end;gap:20px}
+    .languages{display:grid;grid-template-columns:repeat(3,1fr);padding:2px;border:1px solid rgb(255 255 255 / 38%);border-radius:7px;background:rgb(255 255 255 / 10%);transition:border-color 650ms ease,background-color 650ms ease}
+    .floating .languages{border-color:#c7c7cc;background:rgb(118 118 128 / 8%)}
+    .nav-brand{display:inline-flex;align-items:center;gap:8px;margin-right:auto;padding:0;border:0;background:none;font-size:15px;font-weight:700;line-height:1;color:inherit;letter-spacing:0;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 320ms ease}
+    .nav.floating .nav-brand{opacity:1;pointer-events:auto}
+    .nav-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;flex:none}
+    .languages button{min-width:40px;height:27px;padding:0 9px;border:0;border-radius:5px;color:inherit;background:transparent;cursor:pointer;font-size:12px;font-weight:650;opacity:.72}
+    .languages button[aria-pressed=true]{color:var(--ink);background:var(--paper);box-shadow:0 1px 3px rgb(0 0 0 / 15%);opacity:1}
+    .hero{position:relative;height:min(760px,calc(100svh - 72px));min-height:min(540px,calc(100svh - 32px));display:flex;align-items:center;overflow:hidden;padding:72px 0 82px;color:#fff;background:#17181a}
+    .hero-image{position:absolute;inset:-5%;width:110%;height:110%;object-fit:cover;object-position:center 58%;opacity:0;filter:saturate(.76);transform:translate3d(0,var(--hero-y),0) scale(var(--hero-scale));transition:opacity 1500ms cubic-bezier(.2,.7,.2,1),filter 1800ms ease;will-change:transform,opacity}
+    .hero-image.ready{opacity:1;filter:saturate(.9)}
+    .hero::after{position:absolute;inset:0;content:"";background:rgb(0 0 0 / 54%)}
+    .hero-inner{position:relative;z-index:1}
+    .hero-inner>.eyebrow,.hero-inner>.hero-copy,.hero-inner>.facts{opacity:var(--copy-opacity);transform:translate3d(0,var(--copy-y),0);will-change:transform,opacity}
+    .eyebrow,.kicker{margin:0 0 16px;font-size:14px;font-weight:650}.eyebrow{color:rgb(255 255 255 / 76%)}
+    h1{max-width:1000px;margin:0;font-size:76px;font-weight:700;line-height:.98;letter-spacing:0}
+    .title-morph-ready h1{color:transparent}
+    .morph-title{position:fixed;z-index:31;top:0;left:0;max-width:calc(100vw - 28px);overflow:hidden;color:#fff;font-size:76px;font-weight:700;line-height:.98;letter-spacing:0;white-space:nowrap;text-overflow:clip;opacity:0;transform:translate3d(var(--title-x),var(--title-y),0) scale(var(--title-scale));transform-origin:left top;pointer-events:auto;cursor:pointer;will-change:transform,opacity;transition:opacity 320ms ease}
+    .brand-trigger{padding:0;border:0;background:none;font:inherit;color:inherit;letter-spacing:inherit;line-height:inherit;text-align:inherit;cursor:pointer}.brand-trigger:hover{opacity:.72}
+    .title-morph-ready .morph-title{opacity:1}.title-morph-ready .morph-title.hidden{opacity:0;pointer-events:none}
+    .hero-copy{max-width:720px;margin:28px 0 0;color:rgb(255 255 255 / 84%);font-size:23px;line-height:1.34}
+    .facts{display:flex;flex-wrap:wrap;gap:16px 42px;margin:38px 0 0;padding:0;color:rgb(255 255 255 / 66%);font-size:13px;list-style:none}
+    .facts strong,.facts span{display:block}.facts strong{color:#fff;font-size:22px;line-height:1.1;overflow-wrap:anywhere}.facts span{margin-top:4px}
+    .featured{padding:84px 0 92px;color:#f5f5f7;background:#0b0b0c}
+    .featured-grid{display:grid;grid-template-columns:minmax(0,1fr) var(--card-width);gap:72px;align-items:center}
+    .kicker{color:#a1a1a6}.featured h2,.archive h2{margin:0;font-size:48px;line-height:1.06;letter-spacing:0;overflow-wrap:anywhere}
+    .source-link,.card-link{display:inline-flex;align-items:center;gap:5px;color:#2997ff;text-decoration:none}.source-link:hover,.card-link:hover{text-decoration:underline}
+    .metrics{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin:0;padding:0;list-style:none}
+    .metric{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:12.5px;font-weight:600;text-decoration:none}.metric svg{width:15px;height:15px;flex:none;fill:currentColor}.metric b{font-size:12.5px;font-weight:650;color:var(--ink)}.metric:hover{color:var(--ink)}.metric:hover b{color:var(--ink)}
+    .featured-player-col{min-width:0}
+    .featured .metric{color:#86868b}.featured .metric b{color:#f5f5f7}.featured .metric:hover{color:#fff}.featured .metric:hover b{color:#fff}
+    .player{position:relative;width:100%;aspect-ratio:var(--video-ratio);overflow:hidden;background:#151517;isolation:isolate;scroll-margin-top:var(--nav-height);--video-ratio:9/16}
+    .featured-player{border:1px solid #2c2c2e;border-radius:8px}
+    #featured-player{transition:width .6s cubic-bezier(.22,.61,.36,1)}
+    .player video{position:absolute;inset:0;width:100%;height:100%;display:block;border:0;background:#000;object-fit:contain}
+    .player-loading{position:absolute;z-index:2;inset:0;display:grid;place-items:center;color:#d1d1d6;background:#151517;font-size:12px;cursor:progress}.player:not(.is-loading) .player-loading{display:none}
+    .cover-title{position:absolute;z-index:3;top:32px;right:16px;left:16px;width:max-content;max-width:calc(100% - 32px);padding:8px 10px;border:1px solid rgb(255 255 255 / 30%);border-radius:6px;color:#fff;background:rgb(0 0 0 / 64%);box-shadow:0 2px 12px rgb(0 0 0 / 24%);font-size:15px;font-weight:680;line-height:1.22;text-shadow:0 1px 5px #000;overflow-wrap:anywhere;pointer-events:none;backdrop-filter:blur(10px);transition:opacity 180ms ease}.player.is-playing .cover-title,.player:focus-within .cover-title{opacity:0}
+    .poster{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;padding:0;border:0;color:#fff;background:var(--poster);cursor:pointer}
+    .poster-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+    .poster::before{position:absolute;inset:9% 10%;border-top:1px solid rgb(255 255 255 / 24%);content:""}
+    .poster::after{position:absolute;width:62%;aspect-ratio:1;border:1px solid rgb(255 255 255 / 17%);border-radius:50%;content:""}
+    .play{position:relative;z-index:1;width:58px;height:58px;display:grid;place-items:center;border:1px solid rgb(255 255 255 / 46%);border-radius:50%;background:rgb(0 0 0 / 36%);font-size:22px;text-indent:3px;backdrop-filter:blur(10px);transition:transform 180ms ease,background 180ms ease}
+    .poster:hover .play{transform:scale(1.06);background:rgb(0 0 0 / 54%)}.poster-info{position:absolute;z-index:1;right:0;bottom:0;left:0;padding:70px 18px 15px;background:linear-gradient(to top,rgb(0 0 0 / 82%) 0,rgb(0 0 0 / 62%) 36%,rgb(0 0 0 / 24%) 72%,transparent 100%);pointer-events:none}.poster-name{display:-webkit-box;overflow:hidden;color:#fff;font-size:18px;font-weight:760;line-height:1.28;letter-spacing:.01em;text-align:left;text-shadow:0 1px 10px rgb(0 0 0 / 70%);-webkit-box-orient:vertical;-webkit-line-clamp:2}.poster-intro{display:-webkit-box;overflow:hidden;margin-top:7px;color:rgb(255 255 255 / 92%);font-size:12.5px;font-weight:450;line-height:1.5;text-align:left;text-shadow:0 1px 8px rgb(0 0 0 / 65%);-webkit-box-orient:vertical;-webkit-line-clamp:3}.poster.is-failed .poster-info{display:none}.index{position:absolute;z-index:1;top:15px;right:18px;bottom:auto;color:rgb(255 255 255 / 72%);font-size:12px;font-weight:650;text-shadow:0 1px 6px rgb(0 0 0 / 60%)}.poster-state{position:absolute;z-index:1;right:18px;bottom:44px;left:18px;color:rgb(255 255 255 / 88%);font-size:11px;line-height:1.5;text-align:center;text-shadow:0 1px 6px #000}
+    .archive{padding:92px 0 108px}.archive-header{display:flex;align-items:end;justify-content:space-between;gap:36px;margin-bottom:28px}
+    .archive-summary{max-width:520px;margin:0;color:var(--muted);text-align:right}
+    .toolbar{display:flex;align-items:center;justify-content:flex-end;gap:11px;margin-bottom:34px}.sort-label{color:var(--muted);font-size:12px}
+    .sorter{display:grid;grid-template-columns:repeat(3,auto);padding:2px;border:1px solid #c7c7cc;border-radius:7px;background:rgb(118 118 128 / 8%)}
+    .sorter button{height:30px;padding:0 11px;border:0;border-radius:5px;color:var(--muted);background:transparent;cursor:pointer;font-size:12px;font-weight:650;white-space:nowrap}
+    .sorter button[aria-pressed=true]{color:var(--ink);background:var(--paper);box-shadow:0 1px 3px rgb(0 0 0 / 12%)}
+    .video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-flow:row dense;grid-auto-rows:1px;column-gap:24px;row-gap:3px;align-items:start}
+    .card{width:100%;min-width:0;margin:0 0 21px;overflow:hidden;border:1px solid rgb(0 0 0 / 8%);border-radius:8px;background:var(--paper);box-shadow:0 3px 18px rgb(0 0 0 / 5%);align-self:start}
+    .card-body{padding:21px 21px 23px}.card-meta{display:flex;justify-content:space-between;gap:12px;margin-bottom:10px;color:var(--muted);font-size:12px}
+    .card h3{margin:0;font-size:21px;line-height:1.2;letter-spacing:0;overflow-wrap:anywhere}.card-description{margin:13px 0 13px;color:var(--muted);font-size:14px;line-height:1.55}
+    .card-bottom{display:flex;align-items:center;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;margin-top:14px}.card .metrics{margin:0}
+    .card-link{font-size:14px}.reveal{opacity:0;transform:translate3d(0,34px,0) scale(.985);transition:opacity 700ms cubic-bezier(.2,.7,.2,1),transform 700ms cubic-bezier(.2,.7,.2,1)}.reveal.visible{opacity:1;transform:none}
+    footer{padding:30px 0 42px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.footer-inner p{margin:0}.version{opacity:.5;font-variant-numeric:tabular-nums}
+    .contact-modal{position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;padding:20px;visibility:hidden;opacity:0;transition:opacity 280ms ease,visibility 0s linear 280ms}
+    .contact-modal.open{visibility:visible;opacity:1;transition:opacity 280ms ease}
+    .contact-backdrop{position:absolute;inset:0;background:rgb(18 18 22 / 48%);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+    .contact-panel{position:relative;width:min(420px,100%);max-height:calc(100svh - 40px);overflow:auto;padding:22px 20px 12px;border:1px solid rgb(0 0 0 / 10%);border-radius:18px;background:var(--paper);box-shadow:0 24px 70px rgb(0 0 0 / 30%);transform:translateY(16px) scale(.97);transition:transform 340ms cubic-bezier(.22,.61,.36,1)}
+    .contact-modal.open .contact-panel{transform:none}
+    .contact-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.contact-head h2{margin:0;font-size:24px;line-height:1.1}
+    .contact-sub{margin:8px 0 12px;color:var(--muted);font-size:13px}
+    .contact-close{flex:none;width:34px;height:34px;padding:0;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--muted);font-size:13px;cursor:pointer}.contact-close:hover{color:var(--ink);border-color:var(--muted)}
+    .contact-list{margin:0;padding:0;list-style:none}
+    .contact-item{display:flex;align-items:center;gap:13px;padding:10px 8px;border-radius:13px;text-decoration:none;color:var(--ink);cursor:pointer}.contact-item:hover{background:rgb(118 118 128 / 12%)}
+    .contact-icon{flex:none;width:40px;height:40px;display:grid;place-items:center}.contact-icon svg{width:40px;height:40px;display:block}
+    .contact-text{display:block;min-width:0}.contact-name{display:block;font-size:15px;font-weight:680;line-height:1.25}.contact-handle{display:block;margin-top:2px;color:var(--muted);font-size:12.5px;line-height:1.3;overflow-wrap:anywhere}
+    .contact-arrow{margin-left:auto;flex:none;color:var(--muted);font-size:15px;text-decoration:none}
+    @media(max-width:1000px){:root{--page:min(calc(100% - 32px),760px);--card-width:clamp(280px,calc((100vw - 56px)/2),368px)}h1,.morph-title{font-size:60px}.featured-grid{grid-template-columns:minmax(0,1fr) var(--card-width);gap:42px}.featured h2,.archive h2{font-size:40px}.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.archive-header{display:block}.archive-summary{margin-top:16px;text-align:left}}
+    @media(max-width:720px){:root{--page:calc(100% - 28px);--card-width:min(100%,430px);--nav-height:52px}.languages button{min-width:35px;padding:0 7px}.hero{height:min(620px,calc(100svh - 56px));min-height:min(500px,calc(100svh - 32px));padding:62px 0 56px}.hero-image{object-position:48% 58%}h1,.morph-title{font-size:46px;line-height:1}.hero-copy{margin-top:21px;font-size:19px}.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px 24px}.facts strong{font-size:17px}.facts span{font-size:11px}.featured{padding:62px 0 68px}.featured-grid{grid-template-columns:1fr;gap:32px}.featured h2,.archive h2{font-size:34px}.featured-player-col{width:var(--card-width);max-width:100%;justify-self:center}.featured-player{width:100%}.archive{padding:68px 0 78px}.archive-header{margin-bottom:24px}.toolbar{display:block;margin-bottom:26px}.sort-label{display:none}.sorter{display:flex;width:100%}.sorter button{display:inline-flex;align-items:center;justify-content:center;flex:1 1 0;min-width:0;padding:0 2px;font-size:11.5px}.video-grid{grid-template-columns:1fr}.card{margin-bottom:15px}.card-body{padding:19px 18px 21px}.card h3{font-size:20px}.footer-inner{display:block}.footer-inner p+p{margin-top:7px}}
+    @media(max-width:370px){h1,.morph-title{font-size:40px}.hero-copy{font-size:17px}.facts{gap:10px}.sort-label{display:none}.toolbar{justify-content:flex-start}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.nav,.nav-brand,.hero-image,.morph-title,.play,.reveal,#featured-player,.contact-modal,.contact-panel{transition:none}.reveal{opacity:1;transform:none}.hero-image{transform:none}}
+  </style>
+</head>
+<body>
+  <header class="nav" id="nav">
+    <div class="nav-inner">
+      <button type="button" class="nav-brand" data-brand><img class="nav-avatar" src="https://p3-pc.douyinpic.com/img/aweme-avatar/tos-cn-avt-0015_6c7a0b7dab6cb4a87cb7ae41275514f0~c5_300x300.jpeg?from=2956013662" alt="" width="28" height="28"><span>That Casey Li</span></button>
+      <div class="languages" role="group" aria-label="Language">
+        <button type="button" data-lang="zh" aria-pressed="false">中</button>
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      </div>
+    </div>
+  </header>
+  <div class="morph-title" id="morph-title" data-brand aria-hidden="true">That Casey Li</div>
+
+  <div class="contact-modal" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-title" aria-hidden="true">
+    <div class="contact-backdrop" data-contact-close></div>
+    <div class="contact-panel">
+      <div class="contact-head">
+        <h2 id="contact-title">That Casey Li</h2>
+        <button type="button" class="contact-close" data-contact-close aria-label="Close">✕</button>
+      </div>
+      <p class="contact-sub" id="contact-sub"></p>
+      <ul class="contact-list" id="contact-list"></ul>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <img class="hero-image" id="hero-image" src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wide-angle%20editorial%20photograph%20of%20a%20black%20concert%20grand%20piano%20beside%20handwritten%20orchestral%20score%20pages%20in%20a%20bright%20contemporary%20music%20studio%2C%20morning%20side%20light%2C%20authentic%20materials%2C%20restrained%20neutral%20palette%2C%20high%20detail%2C%20no%20people%2C%20no%20text%2C%20premium%20music%20portfolio%20photography&image_size=landscape_16_9" alt="" fetchpriority="high" decoding="async">
+      <div class="hero-inner">
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1 id="hero-title"><button type="button" class="brand-trigger" data-brand aria-haspopup="dialog">That Casey Li</button></h1>
+        <p class="hero-copy" id="hero-copy"></p>
+        <ul class="facts">
+          <li><strong id="video-count">18</strong><span id="videos-label"></span></li>
+          <li><strong id="top-likes"></strong><span id="likes-label"></span></li>
+          <li><strong id="total-followers"></strong><span id="total-followers-label"></span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="featured" aria-labelledby="featured-title">
+      <div class="section-inner featured-grid reveal">
+        <div>
+          <p class="kicker" id="featured-kicker"></p>
+          <h2 id="featured-title"></h2>
+        </div>
+        <div class="featured-player-col">
+          <div id="featured-player"></div>
+          <div class="card-bottom featured-card-bottom">
+            <ul class="metrics" id="featured-metrics"></ul>
+            <a class="card-link" id="featured-link" target="_blank" rel="noreferrer"></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="archive" aria-labelledby="archive-title">
+      <div class="section-inner">
+        <div class="archive-header reveal">
+          <h2 id="archive-title"></h2>
+        </div>
+        <div class="toolbar reveal">
+          <span class="sort-label" id="sort-label"></span>
+          <div class="sorter" role="group" aria-label="Sort videos">
+            <button type="button" data-sort="fav" aria-pressed="true"></button>
+            <button type="button" data-sort="likes" aria-pressed="false"></button>
+            <button type="button" data-sort="date" aria-pressed="false"></button>
+          </div>
+        </div>
+        <div class="video-grid" id="video-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner"><p>© 2026 <button type="button" class="brand-trigger" data-brand>That Casey Li</button></p><p id="source-note"></p><p class="version">v110</p></div>
+  </footer>
+  <noscript>This page requires JavaScript to display the video archive.</noscript>
+
+  <script>
+    const ui={
+      zh:{locale:"zh-CN",lang:"zh-CN",eyebrow:"追求音乐梦想的小女孩",hero:"把梦、雨、黄昏与未说出口的情绪，写进钢琴与交响乐里。",videos:"部公开视频",topLikes:"最高点赞",totalFans:"全平台粉丝",featured:"首位推荐 · 交响乐",archive:"作品档案",sort:"排序",favSort:"我最喜欢",likesSort:"点赞最多",dateSort:"最新发布",source:"在抖音中查看",play:"播放视频",loading:"正在加载视频…",retry:"重新加载播放器",failed:"视频加载失败，点击重试或前往抖音观看",duration:"时长",likes:"点赞",favorites:"收藏",comments:"评论",note:"内容与互动数据来源：抖音、小红书 · 更新于 2026-09-04",contactSub:"在这些平台找到我"},
+      en:{locale:"en-GB",lang:"en",eyebrow:"A little girl pursuing her music dream",hero:"Dreams, rain, dusk and unspoken feelings, written into piano and orchestral music.",videos:"public videos",topLikes:"top likes",totalFans:"Followers · all platforms",featured:"Featured · Orchestral",archive:"Works archive",sort:"Sort by",favSort:"My favourites",likesSort:"Most liked",dateSort:"Newest",source:"View on Douyin",play:"Play video",loading:"Loading video…",retry:"Reload player",failed:"Could not load the video. Click to retry or open on Douyin.",duration:"Duration",likes:"Likes",favorites:"Saves",comments:"Comments",note:"Content and engagement data: Douyin & Xiaohongshu · Updated 4 September 2026",contactSub:"Find me on these platforms"},
+      de:{locale:"de-DE",lang:"de",eyebrow:"Ein kleines Mädchen, das ihren Musiktraum verfolgt",hero:"Träume, Regen, Abendlicht und unausgesprochene Gefühle werden zu Klavier- und Orchestermusik.",videos:"öffentliche Videos",topLikes:"meiste Likes",totalFans:"Follower · alle Plattformen",featured:"Empfohlen · Orchester",archive:"Werkarchiv",sort:"Sortieren",favSort:"Meine Favoriten",likesSort:"Meiste Likes",dateSort:"Neueste",source:"Auf Douyin ansehen",play:"Video abspielen",loading:"Video wird geladen…",retry:"Player neu laden",failed:"Das Video konnte nicht geladen werden. Erneut versuchen oder auf Douyin öffnen.",duration:"Dauer",likes:"Likes",favorites:"Gespeichert",comments:"Kommentare",note:"Inhalte und Interaktionsdaten: Douyin & Xiaohongshu · Stand: 4. September 2026",contactSub:"Finde mich auf diesen Plattformen"}
+    };
+    const rows=[
+      ["7676727478954413642","2026-08-22",94,174,33,27,["献给奶奶的战斗史诗｜\nThe Light We Fight For","Battle Epic for Grandma | The Light We Fight For","Kampf-Epos für die Großmutter | The Light We Fight For"],["献给奶奶的大型史诗交响。评论将它听成一场有战斗感的宏大制作，也送来了早日康复的祝愿。","A large-scale epic dedicated to Casey's grandmother. Listeners heard a combative, cinematic sweep and joined the wish for her recovery.","Ein großes Epos für Caseys Großmutter. Hörer beschrieben kämpferische, filmische Wucht und schlossen sich den Genesungswünschen an."]],
+      ["7636383381010717897","2026-05-05",51,670,115,58,["写作业时的陪伴｜朝欢谣","Study Companion | Morning Joy Ballad","Lernbegleitung | Ballade der Morgenfreude"],["几乎只用黑键写成的五声调即兴，轻快又有古意。听众称赞旋律耐听，也把它当作写作业时反复播放的陪伴。","A pentatonic improvisation written almost entirely on black keys, both buoyant and ancient in colour. Listeners praised its replay value and even used it as a study companion.","Eine pentatonische Improvisation fast nur auf schwarzen Tasten, lebhaft und zugleich altertümlich. Hörer lobten ihren Wiederhörwert und nutzten sie sogar beim Lernen."]],
+      ["7622552033379885961","2026-03-29",51,3022,880,285,["充满叙事张力｜午夜狂想","Narrative Tension | Midnight Rhapsody","Erzählspannung | Mitternachtsrhapsodie"],["织体复杂的爵士尝试，让左手也拥有独立旋律。评论喜欢它的叙事张力，认为技术与编排已经不止适合留在短视频里。","A dense jazz experiment that gives the left hand its own melodic voice. Listeners admired its narrative energy and felt the playing and arrangement deserved a larger stage.","Ein dichtes Jazzexperiment mit eigener Melodie in der linken Hand. Hörer mochten die erzählerische Energie und sahen Spiel und Arrangement auf einer größeren Bühne."]],
+      ["7609244298228042971","2026-02-21",36,215000,49000,11257,["最受欢迎的旋律｜诙谐舞曲","Most-Loved Melody | Whimsical Dance","Beliebteste Melodie | Skurriler Tanz"],["明亮旋律里混入爵士语汇，形成轻巧又有推动力的诙谐舞曲。热烈反馈和持续点播让它成为目前最受欢迎的作品。","Bright melody meets a hint of jazz in a nimble dance with real forward motion. Strong listener response and repeated requests made it the collection's most popular work.","Helle Melodik trifft auf einen Hauch Jazz und wird zu einem beweglichen Tanz. Starke Resonanz und viele Musikwünsche machten ihn zum beliebtesten Werk der Sammlung."]],
+      ["7587013795466333466","2025-12-23",48,5998,1797,352,["怪物舞会｜荒诞舞曲","Monsters' Ball | Absurd Dance","Ball der Monster | Absurder Tanz"],["凭直觉写下的怪诞爵士，以不寻常的和声制造顽皮感。评论把它想象成“怪物舞会”，怪异之外留下的却是快乐。","An instinctive strange-jazz improvisation whose unusual harmony feels mischievous. One listener imagined a 'monsters' ball': peculiar on the surface, joyful underneath.","Eine intuitive Strange-Jazz-Improvisation mit schelmischer Harmonik. Ein Hörer dachte an einen „Tanz der Monster“: außen seltsam, darunter voller Freude."]],
+      ["7578140092390110310","2025-11-29",38,1723,403,146,["期待续写的完整版｜破晓序","Awaiting a Full Version | Dawn Prelude","Auf eine Vollversion wartend | Präludium der Morgendämmerung"],["清晨出现的旋律由简洁左手托起，随后走向更开阔的高潮。听众尤其喜欢后段，并反复期待它被续写成完整版。","A morning melody carried by a spare left hand before opening into a broader climax. Listeners singled out the later passage and repeatedly asked for a full version.","Eine Morgenmelodie über schlichter linker Hand, die sich zu einem weiten Höhepunkt öffnet. Besonders der spätere Abschnitt ließ Hörer nach einer Vollversion fragen."]],
+      ["7567511147432447091","2025-11-01",68,1092,268,61,["梦里带回来的十三秒｜梦中的旋律","Thirteen Seconds from a Dream | Melody from a Dream","Dreizehn Sekunden aus einem Traum | Melodie aus einem Traum"],["醒来后仍记得梦里的前十三秒，于是把那份稍纵即逝的旋律扩写成一首脆弱而清澈的钢琴曲。","The first thirteen seconds survived waking from a dream, then grew into a piano piece that feels fragile, lucid and fleeting.","Die ersten dreizehn Sekunden blieben nach dem Erwachen aus einem Traum und wuchsen zu einem zerbrechlichen, klaren Klavierstück."]],
+      ["7546135342715391259","2025-09-04",107,2362,657,181,["与命运正面抗争｜中子星","Confronting Fate | Neutron Star","Dem Schicksal entgegen | Neutronenstern"],["暗物质系列中更明亮的一章，保留未经修改的原始力度。评论听见了激情，以及一种与命运正面抗争的气势。","A brighter chapter in the Dark Matter series, preserving the force of an unedited first take. Listeners heard passion and the feeling of confronting fate head-on.","Ein helleres Kapitel der Dunkle-Materie-Reihe mit der Kraft eines unbearbeiteten ersten Takes. Hörer vernahmen Leidenschaft und den direkten Kampf mit dem Schicksal."]],
+      ["7529957944197713179","2025-07-23",25,2905,567,435,["未完成即悬念｜黑暗童话","Unfinished Suspense | Dark Fairytale","Unvollendete Spannung | Dunkles Märchen"],["一段仍在寻找方向的短篇创作，把灵感暂时停下时的原始状态完整保留，也让未完成本身成为悬念。","A short work still searching for its direction, preserving the exact moment inspiration paused and turning its unfinished state into suspense.","Eine kurze Skizze auf der Suche nach ihrer Richtung. Sie bewahrt den Moment, in dem die Inspiration innehielt, und macht das Unvollendete zur Spannung."]],
+      ["7525404005045243186","2025-07-10",102,141000,33000,30000,["从宿命走向救赎｜暗物质","From Fate to Salvation | Dark Matter","Vom Schicksal zur Erlösung | Dunkle Materie"],["沉重宿命感逐渐转入西方古典色彩与救赎感。这部突破性作品让大量听众开始期待更大的舞台与未来的正式发行。","A heavy sense of fate gradually turns toward Western classical colour and release. This breakout work led many listeners to imagine a larger stage and future official releases.","Schwere Schicksalhaftigkeit wandelt sich in westlich-klassische Farben und Erlösung. Das Erfolgsstück ließ viele Hörer an eine größere Bühne und künftige Veröffentlichungen denken."]],
+      ["7524711264132861235","2025-07-08",30,2026,343,217,["雨天童年记忆｜朦胧雨天","Rainy Day Memory | Hazy Rainy Day","Regentag-Erinnerung | Trüber Regentag"],["雨天想到的旋律，多年后成为短小钢琴曲。听众从中认出了难以描述的童年想象，并希望能够拿到乐谱继续演奏。","A melody imagined on a rainy day, finally shaped into a short piano piece. Listeners recognised a hard-to-name childhood feeling and asked for a score to play it themselves.","Eine Melodie von einem Regentag, Jahre später als kurzes Klavierstück. Hörer erkannten darin ein schwer benennbares Kindheitsgefühl und fragten nach Noten."]],
+      ["7522416208559033626","2025-07-02",41,7193,926,1231,["毫无保留的灵感｜光影狂想","Unreserved Inspiration | Light & Shadow Rhapsody","Uneingeschränkte Inspiration | Licht-Schatten-Rhapsodie"],["没有预先练习的纯即兴，旋律与和声全凭直觉向前冲。它最打动人的正是灵感到来时毫无保留的能量。","An entirely unpractised improvisation, with melody and harmony driven forward by instinct. Its appeal lies in the unreserved energy of inspiration arriving in real time.","Eine völlig ungeprobte Improvisation, deren Melodie und Harmonie allein vom Instinkt vorangetrieben werden. Ihre Stärke ist die ungefilterte Energie des Augenblicks."]],
+      ["7519063270055300362","2025-06-23",75,22725,4795,6555,["噪音中涌起的海浪｜纸舟焚海","Waves from Noise | Paper Boat in a Burning Sea","Wellen aus Lärm | Papierboot im brennenden Meer"],["从嘈杂环境中诞生的即兴，把干扰转化成带有海浪般起伏的推进感；错音与急促也保留了现场的真实。","Born in a noisy room, this improvisation turns interruption into wave-like momentum. Wrong notes and haste remain as part of its honest, live character.","In einem lauten Raum entstanden, verwandelt diese Improvisation Störung in wellenartige Bewegung. Fehler und Eile bleiben Teil ihres ehrlichen Live-Charakters."]],
+      ["7517301983159078194","2025-06-18",63,11813,2521,812,["低谷里闯入的光｜桎·星芒","Light in the Dark | Shackles · Starlight","Licht im Dunkeln | Fesseln · Sternenlicht"],["前半段悬疑而宿命，转调后逐渐走向治愈。评论把它形容为人生低谷里突然闯入的一束光。","Suspense and fate shape the opening before a modulation turns toward healing. One listener described it as a ray of light suddenly entering life at its lowest point.","Spannung und Schicksal prägen den Anfang, bevor eine Modulation zur Heilung führt. Ein Hörer beschrieb es als Lichtstrahl, der im tiefsten Moment ins Leben fällt."]],
+      ["7516197247278042406","2025-06-15",56,7145,1495,889,["听众命名的神秘曲｜镜中之秘","Named by Listeners | Secret in the Mirror","Von Hörern benannt | Geheimnis im Spiegel"],["从随手弹出的音开始，即兴慢慢长成完整作品。它的神秘色彩也激发听众参与命名，留下了“镜中之秘”等想象。","Beginning with casually played notes, the improvisation gradually becomes a complete piece. Its mystery invited listeners to suggest titles such as 'Secret in the Mirror'.","Aus beiläufigen Tönen wächst allmählich ein vollständiges Stück. Seine geheimnisvolle Farbe regte Hörer zu Titeln wie „Geheimnis im Spiegel“ an."]],
+      ["7515097608332168457","2025-06-13",71,7244,1738,421,["失落与治愈之间｜灯未熄","Between Loss and Healing | The Lamp Still Burns","Zwischen Verlust und Heilung | Die Lampe erlischt nicht"],["梦中旋律在日落的失落与治愈之间展开，结尾仍保留即兴痕迹。评论最直接的遗憾是太短，听完仍意犹未尽。","A dreamed melody unfolds between sunset melancholy and consolation, ending with traces of improvisation. Listeners' clearest complaint was that it ended too soon.","Eine geträumte Melodie entfaltet sich zwischen Abendmelancholie und Trost und endet improvisiert. Die häufigste Klage der Hörer: Sie ist viel zu kurz."]],
+      ["7510624567725018418","2025-05-31",33,2330,364,114,["春风未至琴声先暖｜春の低语","Warm Before Spring | Whispers of Spring","Warm vor dem Frühling | Frühlingsgeflüster"],["春风未至，琴声先暖。评论反复提到阳光、活力与旧日惬意，也赞叹简单音调组合出的丰富感受。","The piano warms before the spring wind arrives. Listeners repeatedly mentioned sunlight, vitality and easy memories, praising the feeling built from a simple tune.","Noch vor dem Frühlingswind wird der Klavierklang warm. Hörer nannten Sonne, Lebendigkeit und unbeschwerte Erinnerungen und lobten die Wirkung der einfachen Melodie."]],
+      ["7509856169567063346","2025-05-29",51,1238,237,85,["橙色天空下的童年｜童年的夜","Childhood Under Orange Skies | Childhood Night","Kindheit unter orangefarbenem Himmel | Kindheitsnacht"],["晚饭后的橙色天空唤回童年游乐场，让轻快记忆染上一点伤感，成为一幅黄昏里的短小音乐素描。","An orange evening sky recalls a childhood playground, tinting happy memories with melancholy in a compact musical sketch of dusk.","Ein orangefarbener Abendhimmel ruft den Spielplatz der Kindheit zurück und färbt fröhliche Erinnerungen melancholisch: eine kurze musikalische Skizze der Dämmerung."]]
+    ];
+    const coverTitles={
+      "7676727478954413642":["The Light We Fight For","The Light We Fight For","The Light We Fight For"],
+      "7636383381010717897":["朝欢谣","Morning Joy Ballad","Ballade der Morgenfreude"],
+      "7622552033379885961":["午夜狂想","Midnight Rhapsody","Mitternachtsrhapsodie"],
+      "7609244298228042971":["诙谐舞曲","Whimsical Dance","Skurriler Tanz"],
+      "7587013795466333466":["荒诞舞曲","Absurd Dance","Absurder Tanz"],
+      "7578140092390110310":["破晓序","Dawn Prelude","Präludium der Morgendämmerung"],
+      "7567511147432447091":["梦中的旋律","Melody from a Dream","Melodie aus einem Traum"],
+      "7546135342715391259":["中子星","Neutron Star","Neutronenstern"],
+      "7529957944197713179":["黑暗童话","Dark Fairytale","Dunkles Märchen"],
+      "7525404005045243186":["暗物质","Dark Matter","Dunkle Materie"],
+      "7524711264132861235":["朦胧雨天","Hazy Rainy Day","Trüber Regentag"],
+      "7522416208559033626":["光影狂想","Light & Shadow Rhapsody","Licht-Schatten-Rhapsodie"],
+      "7519063270055300362":["纸舟焚海","Paper Boat in a Burning Sea","Papierboot im brennenden Meer"],
+      "7517301983159078194":["桎·星芒","Shackles · Starlight","Fesseln · Sternenlicht"],
+      "7516197247278042406":["镜中之秘","Secret in the Mirror","Geheimnis im Spiegel"],
+      "7515097608332168457":["灯未熄","The Lamp Still Burns","Die Lampe erlischt nicht"],
+      "7510624567725018418":["春の低语","Whispers of Spring","Frühlingsgeflüster"],
+      "7509856169567063346":["童年的夜","Childhood Night","Kindheitsnacht"]
+    };
+    const videoDimensions={"7578140092390110310":[1920,1080]};
+    const videos=rows.map(([id,date,duration,likes,favorites,comments,title,intro])=>{const [width,height]=videoDimensions[id]||[1080,1920];return{id,date,duration,likes,favorites,comments,width,height,title:{zh:title[0],en:title[1],de:title[2]},cover:{zh:coverTitles[id][0],en:coverTitles[id][1],de:coverTitles[id][2]},intro:{zh:intro[0],en:intro[1],de:intro[2]}}}),featuredId="7676727478954413642";
+    const colors=["#244956","#54624d","#6b493e","#3b4967","#6a5c32","#414147","#285a60","#5b4058"];
+    const savedLanguage=localStorage.getItem("casey-language-v4");
+    function detectLanguage(){const list=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"en"];for(const raw of list){const tag=String(raw).toLowerCase();if(tag.startsWith("zh"))return "zh";if(tag.startsWith("de"))return "de";if(tag.startsWith("en"))return "en"}return "en"}
+    let language=ui[savedLanguage]?savedLanguage:detectLanguage(),sortMode="fav",observer,masonryObserver,activeVideoId="";
+    const favoriteOrder=["7609244298228042971","7622552033379885961","7525404005045243186","7546135342715391259","7515097608332168457","7519063270055300362","7567511147432447091"];
+    const videoUrl=v=>`https://www.douyin.com/video/${v.id}`,mediaUrl=v=>`videos/${v.id}.mp4`,coverUrl=v=>`videos/${v.id}.jpg`;
+    const sortedVideos=()=>[...videos].sort((a,b)=>{if(sortMode==="date")return b.date.localeCompare(a.date);if(sortMode==="fav"){const ia=favoriteOrder.indexOf(a.id),ib=favoriteOrder.indexOf(b.id);if(ia!==-1&&ib!==-1)return ia-ib;if(ia!==-1)return -1;if(ib!==-1)return 1;}return b.likes-a.likes;});
+    function formatDate(date){return new Intl.DateTimeFormat(ui[language].locale,{year:"numeric",month:language==="zh"?"2-digit":"short",day:"2-digit",timeZone:"Asia/Shanghai"}).format(new Date(`${date}T12:00:00+08:00`))}
+    function formatDuration(seconds){return `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,"0")}`}
+    function formatMetric(value){return new Intl.NumberFormat(ui[language].locale,{notation:"compact",maximumFractionDigits:1}).format(value)}
+    function videoFor(video){const media=document.createElement("video");media.title=video.title[language];media.setAttribute("aria-label",`${ui[language].play}: ${video.cover[language]}`);media.controls=true;media.autoplay=true;media.playsInline=true;media.preload="auto";return media}
+    let loadSerial=0;
+    function clearPlayerTimer(shell){if(shell._loadTimeout){clearTimeout(shell._loadTimeout);shell._loadTimeout=0}}
+    const metricIcons={likes:'<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>',favorites:'<path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z"/>',comments:'<path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>'};
+    function posterFor(video,index,failed=false){const button=document.createElement("button"),play=document.createElement("span"),number=document.createElement("span");button.type="button";button.className="poster"+(failed?" is-failed":"");button.style.setProperty("--poster",colors[index%colors.length]);button.title=failed?ui[language].retry:ui[language].play;button.setAttribute("aria-label",`${failed?ui[language].retry:ui[language].play}: ${video.title[language]}`);const cover=document.createElement("img");cover.className="poster-cover";cover.src=coverUrl(video);cover.alt="";cover.setAttribute("aria-hidden","true");cover.addEventListener("error",()=>cover.remove(),{once:true});play.className="play";play.setAttribute("aria-hidden","true");play.textContent=failed?"↻":"▶";number.className="index";number.setAttribute("aria-hidden","true");number.textContent=String(index+1).padStart(2,"0");const info=document.createElement("div");info.className="poster-info";info.setAttribute("aria-hidden","true");const name=document.createElement("span");name.className="poster-name";name.textContent=video.title[language];const intro=document.createElement("span");intro.className="poster-intro";intro.textContent=video.intro[language];info.append(name,intro);button.append(cover,play,number,info);if(failed){const state=document.createElement("span");state.className="poster-state";state.textContent=ui[language].failed;button.append(state)}button.addEventListener("click",()=>startVideo(shellFor(button),video,index));return button}
+    function shellFor(element){return element.closest(".player")}
+    function showIdle(shell,video,index){clearPlayerTimer(shell);shell.dataset.loadToken=String(++loadSerial);shell.classList.remove("is-loading","is-active","is-playing");shell.replaceChildren(posterFor(video,index))}
+    function unloadPlayer(shell){const data=shell?._playerData;if(!data)return;const media=shell.querySelector("video");if(media){media.pause();media.removeAttribute("src");media.load()}if(activeVideoId===shell.dataset.video)activeVideoId="";showIdle(shell,data.video,data.index)}
+    function unloadOtherPlayers(preserve){document.querySelectorAll(".player").forEach(shell=>{if(shell!==preserve&&shell.querySelector("video"))unloadPlayer(shell)})}
+    function resetPlayerRuntime(){document.querySelectorAll(".player").forEach(shell=>{clearPlayerTimer(shell);const media=shell.querySelector("video");if(media){media.pause();media.removeAttribute("src");media.load()}});activeVideoId=""}
+    function coverLabel(video){const title=document.createElement("span");title.className="cover-title";title.setAttribute("aria-hidden","true");title.textContent=video.cover[language];return title}
+    function showFailure(shell,video,index){clearPlayerTimer(shell);if(activeVideoId===video.id)activeVideoId="";shell.classList.remove("is-loading","is-active","is-playing");shell.dataset.loadToken=String(++loadSerial);shell.replaceChildren(posterFor(video,index,true))}
+    function alignPlayer(shell){requestAnimationFrame(()=>{const target=shell.closest(".card")||shell;scrollTo({top:Math.max(0,scrollY+target.getBoundingClientRect().top-document.getElementById("nav").offsetHeight),behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth"})})}
+    function activatePlayer(shell){const id=shell?.dataset.video;if(!id)return;unloadOtherPlayers(shell);activeVideoId=id;document.querySelectorAll(".player.is-active").forEach(player=>player.classList.toggle("is-active",player===shell));alignPlayer(shell)}
+    function loadVideo(shell,video,index){clearPlayerTimer(shell);const token=String(++loadSerial);shell.dataset.loadToken=token;shell.classList.add("is-loading","is-active");const media=videoFor(video),status=document.createElement("span");status.className="player-loading";status.setAttribute("role","status");status.textContent=ui[language].loading;media.addEventListener("loadedmetadata",()=>{if(shell.dataset.loadToken!==token)return;shell.style.setProperty("--video-ratio",`${media.videoWidth}/${media.videoHeight}`);clearPlayerTimer(shell);shell.classList.remove("is-loading")});media.addEventListener("canplay",()=>{if(shell.dataset.loadToken===token)shell.classList.remove("is-loading")});media.addEventListener("play",()=>{if(shell.dataset.loadToken!==token)return;activatePlayer(shell);shell.classList.add("is-playing")});media.addEventListener("pause",()=>shell.classList.remove("is-playing"));media.addEventListener("ended",()=>{shell.classList.remove("is-playing");if(activeVideoId===video.id)activeVideoId=""});media.addEventListener("error",()=>{if(shell.dataset.loadToken===token)showFailure(shell,video,index)});shell.replaceChildren(media,status,coverLabel(video));media.src=mediaUrl(video);media.load();media.play().catch(()=>{if(shell.dataset.loadToken===token&&media.error)showFailure(shell,video,index)});shell._loadTimeout=setTimeout(()=>{if(shell.dataset.loadToken===token&&shell.classList.contains("is-loading"))showFailure(shell,video,index)},45000)}
+    function startVideo(shell,video,index){if(!shell)return;unloadOtherPlayers(shell);activeVideoId=video.id;alignPlayer(shell);loadVideo(shell,video,index)}
+    function playerFor(video,index,featured=false){const shell=document.createElement("div");shell.className=`player${featured?" featured-player":""}`;shell.dataset.video=video.id;shell.dataset.index=index;shell.style.setProperty("--video-ratio",`${video.width}/${video.height}`);shell._playerData={video,index,featured};showIdle(shell,video,index);return shell}
+    function metricsFor(video){return [["likes",video.likes],["favorites",video.favorites],["comments",video.comments]].map(([key,value])=>`<li><a class="metric" href="${videoUrl(video)}" target="_blank" rel="noreferrer" aria-label="${ui[language][key]}: ${value}"><svg viewBox="0 0 24 24" aria-hidden="true">${metricIcons[key]}</svg><b>${formatMetric(value)}</b></a></li>`).join("")}
+    function sizeMasonryCard(card){const grid=card.parentElement,gridStyle=getComputedStyle(grid),row=parseFloat(gridStyle.gridAutoRows),gap=parseFloat(gridStyle.rowGap),margin=parseFloat(getComputedStyle(card).marginBottom),span=`span ${Math.ceil((card.offsetHeight+margin+gap)/(row+gap))}`;if(card.style.gridRowEnd!==span)card.style.gridRowEnd=span}
+    function observeMasonry(grid,restoreY){masonryObserver?.disconnect();requestAnimationFrame(()=>{const cards=[...grid.children];cards.forEach(sizeMasonryCard);if(restoreY!=null){const el=document.documentElement;el.style.scrollBehavior='auto';window.scrollTo(0,restoreY);el.style.scrollBehavior=''}masonryObserver=new ResizeObserver(entries=>entries.forEach(entry=>sizeMasonryCard(entry.target)));cards.forEach(card=>masonryObserver.observe(card))})}
+    function observeReveals(){if(matchMedia("(prefers-reduced-motion: reduce)").matches){document.querySelectorAll(".reveal").forEach(e=>e.classList.add("visible"));return}observer?.disconnect();observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");observer.unobserve(entry.target)}}),{threshold:.08,rootMargin:"0px 0px -6%"});document.querySelectorAll(".reveal:not(.visible)").forEach(e=>observer.observe(e))}
+    function renderFeatured(video,index){document.getElementById("featured-kicker").textContent=`${ui[language].featured} · ${formatDate(video.date)}`;document.getElementById("featured-title").innerHTML=video.title[language];document.getElementById("featured-metrics").innerHTML=metricsFor(video);const linkText=`${ui[language].source} ↗`;const link=document.getElementById("featured-link");link.href=videoUrl(video);link.textContent=linkText;document.getElementById("featured-player").replaceChildren(playerFor(video,index,true))}
+    function renderArchive(list,restoreY){const grid=document.getElementById("video-grid");masonryObserver?.disconnect();grid.replaceChildren();list.forEach((video,index)=>{const article=document.createElement("article");article.className="card reveal";article.append(playerFor(video,index+1));const body=document.createElement("div");body.className="card-body";body.innerHTML=`<div class="card-meta"><time datetime="${video.date}">${formatDate(video.date)}</time><span>${ui[language].duration} ${formatDuration(video.duration)}</span></div><div class="card-bottom"><ul class="metrics">${metricsFor(video)}</ul><a class="card-link" href="${videoUrl(video)}" target="_blank" rel="noreferrer">${ui[language].source} ↗</a></div>`;article.append(body);grid.append(article)});[...grid.children].forEach(sizeMasonryCard);observeMasonry(grid,restoreY);observeReveals()}
+    function render(nextLanguage=language){const keepY=window.scrollY;language=nextLanguage;activeVideoId="";resetPlayerRuntime();document.documentElement.lang=ui[language].lang;document.querySelectorAll("[data-lang]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===language)));document.querySelectorAll("[data-sort]").forEach(b=>{b.setAttribute("aria-pressed",String(b.dataset.sort===sortMode));b.textContent=b.dataset.sort==="fav"?ui[language].favSort:b.dataset.sort==="likes"?ui[language].likesSort:ui[language].dateSort});document.getElementById("eyebrow").textContent=ui[language].eyebrow;document.getElementById("hero-copy").textContent=ui[language].hero;document.getElementById("video-count").textContent=videos.length;document.getElementById("videos-label").textContent=ui[language].videos;document.getElementById("top-likes").textContent=formatMetric(Math.max(...videos.map(v=>v.likes)));document.getElementById("likes-label").textContent=ui[language].topLikes;document.getElementById("total-followers").textContent=formatMetric(41000);document.getElementById("total-followers-label").textContent=ui[language].totalFans;document.getElementById("archive-title").textContent=ui[language].archive;document.getElementById("sort-label").textContent=ui[language].sort;document.getElementById("source-note").textContent=ui[language].note;renderContact();const featured=videos.find(video=>video.id===featuredId),list=sortedVideos().filter(video=>video.id!==featuredId);renderFeatured(featured,0);renderArchive(list,keepY);const el=document.documentElement;el.style.scrollBehavior='auto';window.scrollTo(0,keepY);el.style.scrollBehavior='';requestAnimationFrame(cacheFlipRects)}
+    document.querySelectorAll("[data-lang]").forEach(b=>b.addEventListener("click",()=>{localStorage.setItem("casey-language-v4",b.dataset.lang);render(b.dataset.lang)}));
+    document.querySelectorAll("[data-sort]").forEach(b=>b.addEventListener("click",()=>{if(sortMode===b.dataset.sort)return;sortMode=b.dataset.sort;render()}));
+    const contactModal=document.getElementById("contact-modal"),contactList=document.getElementById("contact-list"),contactSub=document.getElementById("contact-sub");
+    const socials=[
+      {id:"email",name:{zh:"邮箱",en:"Email",de:"E-Mail"},handle:"casey34718@gmail.com",url:"mailto:casey34718@gmail.com"},
+      {id:"douyin",name:{zh:"抖音",en:"Douyin",de:"Douyin"},handle:{zh:"抖音号 ThatCaseyLi",en:"@ThatCaseyLi",de:"@ThatCaseyLi"},url:"https://www.douyin.com/user/MS4wLjABAAAAkEPg_vDWehaVtr9cYVRSp-m81SzeMGWgwVlHDkfLo9c"},
+      {id:"xiaohongshu",name:{zh:"小红书",en:"Xiaohongshu",de:"Xiaohongshu"},handle:{zh:"小红书号 9694659067",en:"Xiaohongshu ID: 9694659067",de:"Xiaohongshu-ID: 9694659067"},url:"https://www.xiaohongshu.com/user/profile/64168c5900000000120129cd"},
+      {id:"instagram",name:{zh:"Instagram",en:"Instagram",de:"Instagram"},handle:"@thatcaseyli",url:"https://www.instagram.com/thatcaseyli/"},
+      {id:"spotify",name:{zh:"Spotify",en:"Spotify",de:"Spotify"},handle:{zh:"That Casey Li",en:"That Casey Li",de:"That Casey Li"},url:"https://open.spotify.com/artist/6r78FADQ2rhZInhmBiPSv2"},
+      {id:"soundcloud",name:{zh:"SoundCloud",en:"SoundCloud",de:"SoundCloud"},handle:"@thatcaseyli",url:"https://soundcloud.com/thatcaseyli"}
+    ];
+    const socialIcons={
+      email:'<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#16161a"/><rect x="9" y="13.5" width="22" height="15" rx="2.6" fill="none" stroke="#fff" stroke-width="2.4"/><path d="M10.6 15.4l9.4 7.2 9.4-7.2" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+      douyin:'<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#111"/><path fill="#fff" d="M15 30.4V9.4l16.7-3.5v4.3l-13.3 2.8v12.5a5.7 5.7 0 1 1-3.4-5.1z"/></svg>',
+      xiaohongshu:'<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#ff2442"/><text x="20" y="28" text-anchor="middle" font-size="20" font-weight="800" fill="#fff" font-family="sans-serif">薯</text></svg>',
+      instagram:'<svg viewBox="0 0 40 40" aria-hidden="true"><defs><linearGradient id="ig-g" x1="0" y1="40" x2="40" y2="0"><stop offset="0" stop-color="#feda75"/><stop offset=".35" stop-color="#fa7e1e"/><stop offset=".62" stop-color="#d62976"/><stop offset="1" stop-color="#4f5bd5"/></linearGradient></defs><rect width="40" height="40" rx="11" fill="url(#ig-g)"/><rect x="10.5" y="10.5" width="19" height="19" rx="5.6" fill="none" stroke="#fff" stroke-width="2.6"/><circle cx="20" cy="20" r="4.4" fill="none" stroke="#fff" stroke-width="2.6"/><circle cx="28.8" cy="11.4" r="1.7" fill="#fff"/></svg>',
+      spotify:'<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#1db954"/><g fill="none" stroke="#0b3d1f" stroke-width="2.3" stroke-linecap="round"><path d="M11.6 25.6c5.6-1.7 11.9-1.35 17.1 1.45"/><path d="M12.6 20.6c4.8-1.5 10.1-1.15 14.6 1.3"/><path d="M13.6 16c4-1.25 8.4-1 12.2 1.15"/></g></svg>',
+      soundcloud:'<svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="11" fill="#ff5500"/><g fill="#fff"><rect x="6.5" y="20" width="3.6" height="10" rx="1.8"/><rect x="12" y="15" width="3.6" height="15" rx="1.8"/><rect x="17.5" y="10.5" width="3.6" height="19.5" rx="1.8"/><rect x="23" y="16" width="3.6" height="14" rx="1.8"/><rect x="28.5" y="19" width="3.6" height="11" rx="1.8"/></g></svg>'
+    };
+    function localized(v){return typeof v==="string"?v:v[language]}
+    function renderContact(){contactSub.textContent=ui[language].contactSub;contactList.innerHTML=socials.map(s=>`<li><a class="contact-item" href="${s.url}" target="_blank" rel="noreferrer"><span class="contact-icon">${socialIcons[s.id]}</span><span class="contact-text"><span class="contact-name">${localized(s.name)}</span><span class="contact-handle">${localized(s.handle)}</span></span><span class="contact-arrow" aria-hidden="true">↗</span></a></li>`).join("")}
+    let contactLastFocus=null;
+    function openContact(){contactLastFocus=document.activeElement;contactModal.classList.add("open");contactModal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";contactModal.querySelector(".contact-close").focus()}
+    function closeContact(){if(!contactModal.classList.contains("open"))return;contactModal.classList.remove("open");contactModal.setAttribute("aria-hidden","true");document.body.style.overflow="";if(contactLastFocus&&contactLastFocus.focus)contactLastFocus.focus()}
+    contactModal.addEventListener("click",e=>{if(e.target.closest("[data-contact-close]"))closeContact()});
+    addEventListener("keydown",e=>{if(e.key==="Escape")closeContact()});
+    document.addEventListener("click",e=>{if(e.target.closest("[data-brand]"))openContact()});
+    document.querySelector(".nav").addEventListener("click",e=>{if(e.target.closest("button"))return;const el=document.documentElement;el.style.scrollBehavior='auto';window.scrollTo(0,window.scrollY);el.style.scrollBehavior='';window.scrollTo({top:0,behavior:'smooth'})});
+    const heroImage=document.getElementById("hero-image"),showHero=()=>heroImage.classList.add("ready"),hideHero=()=>{heroImage.style.display="none"};heroImage.addEventListener("error",hideHero,{once:true});heroImage.complete?(heroImage.naturalWidth?requestAnimationFrame(showHero):hideHero()):heroImage.addEventListener("load",showHero,{once:true});
+    const reducedMotion=matchMedia("(prefers-reduced-motion: reduce)");reducedMotion.addEventListener("change",()=>{observeReveals();if(reducedMotion.matches){heroImage.style.removeProperty("--hero-y");heroImage.style.removeProperty("--hero-scale");[heroEyebrow,heroCopyEl,heroFacts].forEach(el=>{el.style.removeProperty("--copy-y");el.style.removeProperty("--copy-opacity")})}});
+    const nav=document.getElementById("nav"),hero=document.getElementById("hero"),heroTitle=document.getElementById("hero-title"),morphTitle=document.getElementById("morph-title"),navInner=document.querySelector(".nav-inner"),navBrandSpan=navInner.querySelector(".nav-brand span"),heroEyebrow=document.getElementById("eyebrow"),heroCopyEl=document.getElementById("hero-copy"),heroFacts=document.querySelector(".facts");let ticking=false,titleStartX=0,titleStartY=0,titleTargetX=0,titleTargetY=0,titleTargetScale=1;
+    function syncTitleMetrics(){const rect=heroTitle.getBoundingClientRect(),fontSize=parseFloat(getComputedStyle(heroTitle).fontSize)||76;titleStartX=rect.left;titleStartY=rect.top+scrollY;const navFont=parseFloat(getComputedStyle(navBrandSpan).fontSize)||15;titleTargetX=navBrandSpan.getBoundingClientRect().left;titleTargetY=(nav.offsetHeight-navFont)/2;titleTargetScale=navFont/fontSize;document.documentElement.classList.add("title-morph-ready")}
+    function scrollFrame(){const y=Math.max(scrollY,0),floating=y>hero.offsetHeight*.42;nav.classList.toggle("floating",floating);const p=Math.min(y/(hero.offsetHeight*.78),1),titleP=Math.min(y/(hero.offsetHeight*.42),1),ease=titleP*titleP*(3-2*titleP);morphTitle.classList.toggle("hidden",floating);morphTitle.style.setProperty("--title-x",`${titleStartX+(titleTargetX-titleStartX)*ease}px`);morphTitle.style.setProperty("--title-y",`${titleStartY+(titleTargetY-titleStartY)*ease}px`);morphTitle.style.setProperty("--title-scale",String(1+(titleTargetScale-1)*ease));if(!reducedMotion.matches){heroImage.style.setProperty("--hero-y",`${y*.045}px`);heroImage.style.setProperty("--hero-scale",String(1+p*.09));[heroEyebrow,heroCopyEl,heroFacts].forEach(el=>{el.style.setProperty("--copy-y",`${y*.08}px`);el.style.setProperty("--copy-opacity",String(1-p*.88))})}ticking=false}
+    const archiveGrid=document.getElementById("video-grid");let flipCols=getComputedStyle(archiveGrid).gridTemplateColumns,flipRects=[];
+    function cacheFlipRects(){flipRects=[...archiveGrid.children].map(card=>card.getBoundingClientRect())}
+    function flipOnBreakpoint(){const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;const cols=getComputedStyle(archiveGrid).gridTemplateColumns,cards=[...archiveGrid.children];if(cols!==flipCols&&!reduced){const old=flipRects;requestAnimationFrame(()=>requestAnimationFrame(()=>{cards.forEach((card,i)=>{const before=old[i];if(!before)return;const after=card.getBoundingClientRect(),dx=before.left-after.left,dy=before.top-after.top;if(Math.abs(dx)>1||Math.abs(dy)>1){card.style.transition="none";card.style.transform=`translate(${dx}px,${dy}px)`;requestAnimationFrame(()=>{card.style.transition="transform .6s cubic-bezier(.22,.61,.36,1)";card.style.transform=""});setTimeout(()=>{card.style.transition=""},650)}})}))}flipCols=cols;cacheFlipRects()}
+    addEventListener("scroll",()=>{if(!ticking){requestAnimationFrame(scrollFrame);ticking=true}},{passive:true});addEventListener("resize",()=>{if(!ticking){requestAnimationFrame(()=>{syncTitleMetrics();scrollFrame();flipOnBreakpoint()});ticking=true}},{passive:true});
+    const isMobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&matchMedia("(pointer:coarse)").matches);
+    addEventListener("click",e=>{const a=e.target.closest('a[href*="douyin.com/video/"]');if(!a||!isMobile)return;const id=a.href.match(/video\/(\d+)/)?.[1];if(!id)return;e.preventDefault();const app=`snssdk1128://aweme/detail/${id}`;let opened=false;const onVis=()=>{if(document.hidden)opened=true};addEventListener("visibilitychange",onVis);location.href=app;setTimeout(()=>{removeEventListener("visibilitychange",onVis);if(!opened&&document.visibilityState==="visible")location.href=a.href},1500)});
+    render();syncTitleMetrics();scrollFrame();requestAnimationFrame(()=>requestAnimationFrame(cacheFlipRects));
+  </script>
+</body>
+</html>
